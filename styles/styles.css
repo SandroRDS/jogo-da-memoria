@@ -1,0 +1,49 @@
+body
+{
+    font-family             :  'Open Sans', sans-serif;
+    text-align              :  center;
+    background-image        :  linear-gradient(to bottom, aquamarine, rgb(0, 0, 184));
+    background-attachment   :  fixed;
+}
+
+.carta
+{
+    background-color   :  yellowgreen;
+    width              :  200px;
+    height             :  300px;
+    display            :  inline;
+    margin-top         :  2vh;
+    cursor             :  default;
+    border-radius      :  20px;
+    border             :  0;
+    transition         :  background-color 1s;
+}
+
+#play
+{
+    background-color   : rgb(127, 175, 230); 
+    width              : 150px;
+    border-radius      : 50px;
+    border             : 3px solid rgb(36, 83, 136);
+    box-shadow         : 4px 4px 3px rgb(10, 43, 82);
+    height             : 60px;
+    position           : absolute;
+    right              : 280px;
+    top                : 20px;
+    cursor             : pointer;
+}
+
+#pontuacao
+{
+    color           :  #93baff; 
+    display         :  inline-block;
+    margin-right    :  150px;
+    border-bottom   :  1px solid;
+}
+
+#tentativas
+{
+    color           :  #93baff;
+    display         :  inline-block;
+    border-bottom   :  1px solid;
+}

@@ -1,0 +1,94 @@
+<!--
+    |***************************************************************************************************************|
+	|*********************************************** JOGO DA MEMÓRIA ***********************************************|
+	|***************************************************************************************************************|
+	|***************************************************************************************************************|
+	|******************************************** FEITO POR:  SANDRO RDS *******************************************|
+	|***************************************************************************************************************|
+-->
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Jogo da Memória</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+
+    <!--Título: Jogo da Memória-->
+    <h1 style="color: rgb(15, 71, 109); font-size: 35px; text-shadow: 3px 3px 10px rgb(138, 136, 136)">Jogo da Memória</h1>
+    
+    <!--Botão Play-->
+    <button id="play" onclick="iniciarJogo()">
+        <img src="images/play.png" width="50px" alt="">
+    </button>
+
+    <!--Carta 1-->
+    <button id="0" onclick="escolherCarta(0)" class="carta" disabled="true">
+        <img id="img0" src="images/interrogacao.png" height="150px">
+    </button>
+
+    <!--Carta 2-->
+    <button id="1" onclick="escolherCarta(1)" class="carta" disabled="true">
+        <img id="img1" src="images/interrogacao.png" height="150px">
+    </button>
+
+    <!--Carta 3-->
+    <button id="2" onclick="escolherCarta(2)" class="carta" disabled="true">
+        <img id="img2" src="images/interrogacao.png" height="150px">
+    </button>
+
+    <!--Carta 4-->
+    <button id="3" onclick="escolherCarta(3)" class="carta" disabled="true">
+        <img id="img3" src="images/interrogacao.png" height="150px">
+    </button>
+
+    <!--Carta 5-->
+    <button id="4" onclick="escolherCarta(4)" class="carta" disabled="true">
+        <img id="img4" src="images/interrogacao.png" height="150px">
+    </button>
+    
+    <br>
+    
+    <!--Carta 6-->
+    <button id="5" onclick="escolherCarta(5)" class="carta" disabled="true">
+        <img id="img5" src="images/interrogacao.png" height="150px">
+    </button>
+
+    <!--Carta 7-->
+    <button id="6" onclick="escolherCarta(6)" class="carta" disabled="true">
+        <img id="img6" src="images/interrogacao.png" height="150px">
+    </button>
+
+    <!--Carta 8-->
+    <button id="7" onclick="escolherCarta(7)" class="carta" disabled="true">
+        <img id="img7" src="images/interrogacao.png" height="150px">
+    </button>
+
+    <!--Carta 9-->
+    <button id="8" onclick="escolherCarta(8)" class="carta" disabled="true">
+        <img id="img8" src="images/interrogacao.png" height="150px">
+    </button>
+
+    <!--Carta 10-->
+    <button id="9" onclick="escolherCarta(9)" class="carta" disabled="true">
+        <img id="img9" src="images/interrogacao.png" height="150px">
+    </button>
+
+    <br>
+
+    <!--Contadores de Pontuação e Tentativas-->
+    <p id="pontuacao"></p>
+    <p id="tentativas"></p>
+    
+    <script src="js/funcoes.js"></script>
+</body>
+</html>
