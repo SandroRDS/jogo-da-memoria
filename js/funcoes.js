@@ -102,7 +102,7 @@ function finalizarJogo()
         document.getElementById(i).disabled              =  true;
         document.getElementById(i).style.cursor          =  "default";
         document.getElementById(i).style.backgroundColor =  "yellowgreen";
-        document.getElementById("img"+i).src             =  "../images/interrogacao.png";
+        document.getElementById("img"+i).src             =  "images/interrogacao.png";
     }
 }  
 
@@ -113,31 +113,31 @@ function mostrarCarta(numeroDaCarta)
     //CONJUNTO 1: UVA
     if(posicoes[0] == numeroDaCarta || posicoes[1] == numeroDaCarta)
     {
-        document.getElementById("img"+numeroDaCarta).src = "../images/uva.png";
+        document.getElementById("img"+numeroDaCarta).src = "images/uva.png";
     }
 
     //CONJUNTO 2: MAÇÃ
     if(posicoes[2] == numeroDaCarta || posicoes[3] == numeroDaCarta)
     {
-        document.getElementById("img"+numeroDaCarta).src = "../images/maca.png";
+        document.getElementById("img"+numeroDaCarta).src = "images/maca.png";
     }
 
     //CONJUNTO 3: LARANJA
     if(posicoes[4] == numeroDaCarta || posicoes[5] == numeroDaCarta)
     {
-        document.getElementById("img"+numeroDaCarta).src = "../images/laranja.png";
+        document.getElementById("img"+numeroDaCarta).src = "images/laranja.png";
     }
 
     //CONJUNTO 4: MELANCIA
     if(posicoes[6] == numeroDaCarta || posicoes[7] == numeroDaCarta)
     {
-        document.getElementById("img"+numeroDaCarta).src = "../images/melancia.png";
+        document.getElementById("img"+numeroDaCarta).src = "images/melancia.png";
     }
 
     //CONJUNTO 5: MORANGO
     if(posicoes[8] == numeroDaCarta || posicoes[9] == numeroDaCarta)
     {
-        document.getElementById("img"+numeroDaCarta).src = "../images/morango.png";
+        document.getElementById("img"+numeroDaCarta).src = "images/morango.png";
     }
 }
 
@@ -258,8 +258,8 @@ function escolherCarta(numeroDaCarta)
 
                 //APÓS 1 SEG, ESCONDER NOVAMENTE AS CARTAS VIRADAS E REABILITAR AS CARTAS DOS CONJUNTOS QUE AINDA NÃO FORAM ENCONTRADOS
                 setTimeout(function(){
-                    document.getElementById("img"+tentativaAtual1).src = "../images/interrogacao.png";
-                    document.getElementById("img"+tentativaAtual2).src = "../images/interrogacao.png";
+                    document.getElementById("img"+tentativaAtual1).src = "images/interrogacao.png";
+                    document.getElementById("img"+tentativaAtual2).src = "images/interrogacao.png";
                     reabilitarConjuntosNaoEncontrados();
                 }, 1000);
             }
