@@ -1,56 +1,5 @@
 var jogoIniciado = false, pontos, numeroTentativas, tentativaAtual, quantidadeConjuntosEncontrados, primeiraCarta, combinacaoEncontrada, conjuntosEncontrados, posicoes;
 
-//FUNÇÃO: GERAR NÚMERO ALEATÓRIO
-function gerarNovoNumero(min, max)
-{
-    var numeroEncontrado = false;
-    
-    while(numeroEncontrado == false)
-    {
-        var numero = Math.round(Math.random() * 2 * max);
-        
-        //CONTROLAR SE O NÚMERO GERADO ESTÁ ENTRE O NÚMERO MÍNIMO E MÁXIMO PASSADOS
-        if((numero >= min) && (numero <= max))
-        {
-            numeroEncontrado = true;
-        }
-    }
-
-    return numero;
-}
-
-
-//FUNÇÃO: GERAR UM VETOR DE 10 POSIÇÕES COM VALORES DE 0 A 9 EM POSIÇÕES ALEATÓRIAS 
-function embaralharVetor()
-{
-    var numero = [0, 1, 2, 3, 4, 5, 6, 7, 8 , 9];
-    var valorAnterior, i, posicaoAleatoria;
-    
-    //CADA POSIÇÃO, DE 0 A 9, FAZ UMA TROCA DE VALORES COM OUTRA POSIÇÃO ALEATÓRIA
-    for(i=0;i<10;i++)
-    {
-        posicaoAleatoria         =  gerarNovoNumero(0, 9);
-        
-        valorAnterior            =  numero[i];
-        numero[i]                =  numero[posicaoAleatoria];
-        numero[posicaoAleatoria] =  valorAnterior;
-    }
-
-    return numero;
-}
-
-
-//FUNÇÃO: DESABILITAR UM CONJUNTO QUE FOI ENCONTRADO
-function desabilitarConjunto(carta1, carta2)
-{
-    document.getElementById(carta1).style.backgroundColor =  "green";
-    document.getElementById(carta1).disabled              =  true;
-
-    document.getElementById(carta2).style.backgroundColor =  "green";
-    document.getElementById(carta2).disabled              =  true;
-}
-
-
 //FUNÇÃO: INICIAR UM NOVO JOGO
 function iniciarJogo()
 {
@@ -104,72 +53,26 @@ function finalizarJogo()
         document.getElementById(i).style.backgroundColor =  "yellowgreen";
         document.getElementById("img"+i).src             =  "images/interrogacao.png";
     }
-}  
-
-
-//FUNÇÃO: MOSTRAR O SÍMBOLO DA CARTA
-function mostrarCarta(numeroDaCarta)
-{
-    //CONJUNTO 1: UVA
-    if(posicoes[0] == numeroDaCarta || posicoes[1] == numeroDaCarta)
-    {
-        document.getElementById("img"+numeroDaCarta).src = "images/uva.png";
-    }
-
-    //CONJUNTO 2: MAÇÃ
-    if(posicoes[2] == numeroDaCarta || posicoes[3] == numeroDaCarta)
-    {
-        document.getElementById("img"+numeroDaCarta).src = "images/maca.png";
-    }
-
-    //CONJUNTO 3: LARANJA
-    if(posicoes[4] == numeroDaCarta || posicoes[5] == numeroDaCarta)
-    {
-        document.getElementById("img"+numeroDaCarta).src = "images/laranja.png";
-    }
-
-    //CONJUNTO 4: MELANCIA
-    if(posicoes[6] == numeroDaCarta || posicoes[7] == numeroDaCarta)
-    {
-        document.getElementById("img"+numeroDaCarta).src = "images/melancia.png";
-    }
-
-    //CONJUNTO 5: MORANGO
-    if(posicoes[8] == numeroDaCarta || posicoes[9] == numeroDaCarta)
-    {
-        document.getElementById("img"+numeroDaCarta).src = "images/morango.png";
-    }
 }
 
 
-//FUNÇÃO: MARCAR CONJUNTOS ENCONTRADOS
-function marcarConjunto(numeroDoConjunto)
+//FUNÇÃO: GERAR UM VETOR DE 10 POSIÇÕES COM VALORES DE 0 A 9 EM POSIÇÕES ALEATÓRIAS 
+function embaralharVetor()
 {
-    conjuntosEncontrados[numeroDoConjunto] = true;
-}
-
-
-//FUNÇÃO: DESABILITAR TODAS AS CARTAS
-function desabilitarTodasAsCartas()
-{
+    var numero = [0, 1, 2, 3, 4, 5, 6, 7, 8 , 9];
+    var valorAnterior, i, posicaoAleatoria;
+    
+    //CADA POSIÇÃO, DE 0 A 9, FAZ UMA TROCA DE VALORES COM OUTRA POSIÇÃO ALEATÓRIA
     for(i=0;i<10;i++)
     {
-        document.getElementById(i).disabled = true;
+        posicaoAleatoria         =  gerarNovoNumero(0, 9);
+        
+        valorAnterior            =  numero[i];
+        numero[i]                =  numero[posicaoAleatoria];
+        numero[posicaoAleatoria] =  valorAnterior;
     }
-}
 
-
-//FUNÇÃO: REABILITAR OS CONJUNTOS QUE AINDA NÃO FORAM ENCONTRADOS
-function reabilitarConjuntosNaoEncontrados()
-{
-    for(i=0;i<5;i++)
-    {
-        if(conjuntosEncontrados[i] == false)
-        {
-            document.getElementById(posicoes[i*2]).disabled   =  false;
-            document.getElementById(posicoes[i*2+1]).disabled =  false;
-        }
-    }
+    return numero;
 }
 
 
@@ -177,11 +80,11 @@ function reabilitarConjuntosNaoEncontrados()
 function escolherCarta(numeroDaCarta)
 {
     //CONTROLE PARA QUE A FUNÇÃO SÓ EXECUTE QUANDO O USUÁRIO INICIAR O JOGO
-    if(jogoIniciado == true)
+    if(jogoIniciado)
     {
         mostrarCarta(numeroDaCarta);
         
-        if(primeiraCarta == true) //ESCOLHEU A PRIMEIRA CARTA DA TENTATIVA
+        if(primeiraCarta) //ESCOLHEU A PRIMEIRA CARTA DA TENTATIVA
         {
             //DESABILITANDO A CARTA ESCOLHIDA
             tentativaAtual1 = numeroDaCarta;
@@ -251,7 +154,7 @@ function escolherCarta(numeroDaCarta)
             }
             
             //COMBINAÇÃO NÃO ENCONTRADA
-            if(combinacaoEncontrada == false)
+            if(!combinacaoEncontrada)
             {
                 //DESABILITAR TODAS AS CARTAS TEMPORARIAMENTE
                 desabilitarTodasAsCartas();
@@ -297,4 +200,101 @@ function escolherCarta(numeroDaCarta)
             }
         }
     }
+}
+
+
+//FUNÇÃO: MOSTRAR O SÍMBOLO DA CARTA
+function mostrarCarta(numeroDaCarta)
+{
+    //CONJUNTO 1: UVA
+    if(posicoes[0] == numeroDaCarta || posicoes[1] == numeroDaCarta)
+    {
+        document.getElementById("img"+numeroDaCarta).src = "images/uva.png";
+    }
+
+    //CONJUNTO 2: MAÇÃ
+    if(posicoes[2] == numeroDaCarta || posicoes[3] == numeroDaCarta)
+    {
+        document.getElementById("img"+numeroDaCarta).src = "images/maca.png";
+    }
+
+    //CONJUNTO 3: LARANJA
+    if(posicoes[4] == numeroDaCarta || posicoes[5] == numeroDaCarta)
+    {
+        document.getElementById("img"+numeroDaCarta).src = "images/laranja.png";
+    }
+
+    //CONJUNTO 4: MELANCIA
+    if(posicoes[6] == numeroDaCarta || posicoes[7] == numeroDaCarta)
+    {
+        document.getElementById("img"+numeroDaCarta).src = "images/melancia.png";
+    }
+
+    //CONJUNTO 5: MORANGO
+    if(posicoes[8] == numeroDaCarta || posicoes[9] == numeroDaCarta)
+    {
+        document.getElementById("img"+numeroDaCarta).src = "images/morango.png";
+    }
+}
+
+
+//FUNÇÃO: MARCAR CONJUNTOS ENCONTRADOS
+function marcarConjunto(numeroDoConjunto)
+{
+    conjuntosEncontrados[numeroDoConjunto] = true;
+}
+
+
+//FUNÇÃO: DESABILITAR UM CONJUNTO QUE FOI ENCONTRADO
+function desabilitarConjunto(carta1, carta2)
+{
+    document.getElementById(carta1).style.backgroundColor =  "green";
+    document.getElementById(carta1).disabled              =  true;
+
+    document.getElementById(carta2).style.backgroundColor =  "green";
+    document.getElementById(carta2).disabled              =  true;
+}  
+
+
+//FUNÇÃO: DESABILITAR TODAS AS CARTAS
+function desabilitarTodasAsCartas()
+{
+    for(i=0;i<10;i++)
+    {
+        document.getElementById(i).disabled = true;
+    }
+}
+
+
+//FUNÇÃO: REABILITAR OS CONJUNTOS QUE AINDA NÃO FORAM ENCONTRADOS
+function reabilitarConjuntosNaoEncontrados()
+{
+    for(i=0;i<5;i++)
+    {
+        if(conjuntosEncontrados[i] == false)
+        {
+            document.getElementById(posicoes[i*2]).disabled   =  false;
+            document.getElementById(posicoes[i*2+1]).disabled =  false;
+        }
+    }
+}
+
+
+//FUNÇÃO: GERAR NÚMERO ALEATÓRIO
+function gerarNovoNumero(min, max)
+{
+    var numeroEncontrado = false;
+    
+    while(!numeroEncontrado)
+    {
+        var numero = Math.round(Math.random() * max);
+        
+        //CONTROLAR SE O NÚMERO GERADO ESTÁ ENTRE O NÚMERO MÍNIMO E MÁXIMO PASSADOS
+        if((numero >= min) && (numero <= max))
+        {
+            numeroEncontrado = true;
+        }
+    }
+
+    return numero;
 }
